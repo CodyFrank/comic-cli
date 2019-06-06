@@ -1,4 +1,3 @@
-this is a test of operation and git commands
 
 # Comic::Cli
 
