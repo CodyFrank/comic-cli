@@ -13,7 +13,8 @@ class Scraper
     parsed_issues = doc.css("h2:contains('New Releases ')~div.JCMultiRow>div.row-item")
     parsed_issues.each do|book|
       title = book.css("h5").text.strip
-      info_url = book.css("a.meta-title").attr("href")
+      info_url = book.css("a.meta-title").attr("href").text
+      binding.pry
       Comic.new(title, info_url)
     end
   end

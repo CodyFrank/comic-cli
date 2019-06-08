@@ -11,7 +11,7 @@ class CommandLineInterface
       puts "\n choose a number from (1 - #{Comic.all.length}) to see more info about.\n\n\n"
       input = gets.to_i
       if input > 0 && input < Comic.all.length+1
-      self.description(input-1)
+      self.dive(input-1)
     end
     end
   end
@@ -29,9 +29,9 @@ class CommandLineInterface
     end
   end
   
-  def description(index)
-    
-    binding.pry
+  def dive(index)
+    if Comic.all[index].description != nil
+    end
   end
   
   
