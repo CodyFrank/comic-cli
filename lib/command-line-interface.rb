@@ -3,6 +3,12 @@
 class CommandLineInterface
   
   def start 
-    puts "hello world"
+    self.intro
+    Scraper.scrape_books
   end
+  
+  def intro 
+    puts "Welcome, check out whats new in Marvel comics this week!"
+  end
+  
 end
