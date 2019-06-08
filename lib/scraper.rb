@@ -12,6 +12,10 @@ class Scraper
     doc = Nokogiri::HTML(html)
     parsed_issues = doc.css("h2:contains('New Releases ')~div.JCMultiRow>div.row-item")
     #titles_parsed = doc.css("h2:contains('New Releases ')~div.JCMultiRow>div.row-item h5").text
-    binding.pry
+    parsed_issues.each do|book|
+    title = book.css("h5").text.strip
+    info_url = book.css("a.meta-title").attr("href")
+    Comic.new(title, info_url)
+    end
   end
 end
