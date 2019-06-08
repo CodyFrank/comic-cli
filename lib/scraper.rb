@@ -16,6 +16,5 @@ class Scraper
       info_url = book.css("a.meta-title").attr("href")
       Comic.new(title, info_url)
     end
-    binding.pry
   end
 end
