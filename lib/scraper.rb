@@ -10,7 +10,8 @@ class Scraper
   def self.scrape_books
     html = open(BASE_URL)
     doc = Nokogiri::HTML(html)
-    titles_parsed = doc.css("h2:contains('New Releases ')~div.JCMultiRow>div.row-item h5").text
+    parsed_issues = doc.css("h2:contains('New Releases ')~div.JCMultiRow>div.row-item")
+    #titles_parsed = doc.css("h2:contains('New Releases ')~div.JCMultiRow>div.row-item h5").text
     binding.pry
   end
 end
