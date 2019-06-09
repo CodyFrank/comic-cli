@@ -2,7 +2,7 @@
 
 class Comic
   
-  attr_reader :title, :info_url, :published_date, :writer, :penciler, :description, :inker
+  attr_reader :title, :info_url, :published_date, :writer, :description
   
   @@all = []
   
@@ -12,8 +12,6 @@ class Comic
     @@all << self
     @published_date = nil
     @writer = nil
-    @penciler = nil
-    @inker = nil
     @description = nil
   end
   

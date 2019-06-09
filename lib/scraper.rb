@@ -23,5 +23,7 @@ class Scraper
   def self.scrape_info(url)
     html = open(url)
     doc = Nokogiri::HTML(html)
+    parsed_info = doc.css(".featured-item-text")
+    parsed_info.each {|data| binding.pry}
   end
 end
