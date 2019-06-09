@@ -13,7 +13,6 @@ class Scraper
     parsed_issues = doc.css("h2:contains('New Releases ')~div.JCMultiRow>div.row-item")
     parsed_issues.each do|book|
       title = book.css("h5").text.strip
-      #info_url = book.css("a.meta-title").attr("href")
       url = book.css("a.meta-title").map{|x| x["href"]}[0]
       info_url = "https:" + url
       Comic.new(title, info_url)
@@ -23,7 +22,13 @@ class Scraper
   def self.scrape_info(url)
     html = open(url)
     doc = Nokogiri::HTML(html)
-    parsed_info = doc.css(".featured-item-text")
-    parsed_info.each {|data| binding.pry}
+    parsed_info = doc.css(".featured-item-meta")
+    #doc.css(".featured-item-meta + div")
+    #parsed_info = doc.css(".featured-item-text")
+    parsed_info.each do|data|
+      description = data.css("+ div>p:first-child").text
+      published_date = data.css(">div:nth-child(2)").text
+      binding.pry
+    end
   end
 end
