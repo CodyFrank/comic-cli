@@ -14,7 +14,6 @@ class Comic
     @writer = nil
     @penciler = nil
     @inker = nil
-    
     @description = nil
   end
   

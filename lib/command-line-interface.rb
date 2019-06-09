@@ -30,8 +30,8 @@ class CommandLineInterface
   end
   
   def dive(index)
-    if Comic.all[index].description != nil
-    end
+    url = Comic.all[index].info_url
+    Scraper.scrape_info(url)
   end
   
   
