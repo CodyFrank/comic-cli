@@ -19,16 +19,16 @@ class Scraper
     end
   end
   
-  def self.scrape_info(url)
+  def self.scrape_info(comic)
+    url = comic.info_url
     html = open(url)
     doc = Nokogiri::HTML(html)
     parsed_info = doc.css(".featured-item-meta")
-    #doc.css(".featured-item-meta + div")
-    #parsed_info = doc.css(".featured-item-text")
     parsed_info.each do|data|
       description = data.css("+ div>p:first-child").text
       published_date = data.css(">div:nth-child(2)").text
-      binding.pry
+      comic.description = description
+      comic.published_date = published_date
     end
   end
 end

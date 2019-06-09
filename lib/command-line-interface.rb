@@ -6,13 +6,18 @@ class CommandLineInterface
     input = ""
     self.intro
     Scraper.scrape_books
-    until input.downcase == "exit"
+    until input.to_s.downcase == "exit"
       self.list_comics
       puts "\n choose a number from (1 - #{Comic.all.length}) to see more info about.\n\n\n"
-      input = gets.to_i
-      if input > 0 && input < Comic.all.length+1
-      self.dive(input-1)
-    end
+      input = gets.strip
+      if input.to_i > 0 && input.to_i < Comic.all.length+1
+        self.dive(input.to_i-1)
+      elsif input.to_s.downcase == "exit"
+        puts "goodbye"
+      else
+        input = ""
+        puts "invalid response"
+      end
     end
   end
   
@@ -30,8 +35,9 @@ class CommandLineInterface
   end
   
   def dive(index)
-    url = Comic.all[index].info_url
-    Scraper.scrape_info(url)
+    comic = Comic.all[index]
+    Scraper.scrape_info(comic)
+    binding.pry
   end
   
   
