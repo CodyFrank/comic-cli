@@ -9,7 +9,7 @@ class Comic
   def initialize(title, info_url)
     @title = title
     @info_url = info_url
-    @@all << self
+    self.save
     @published_date = nil
     @writer = nil
     @description = nil
@@ -19,5 +19,8 @@ class Comic
     @@all
   end
   
+  def save
+    @@all << self
+  end
   
 end
