@@ -27,8 +27,8 @@ class Scraper
     parsed_info.each do|data|
       description = data.css("+ div>p:first-child").text
       published_date = data.css(">div:nth-child(2)").text
-      comic.description = description
-      comic.published_date = published_date
+      comic.description = description.strip
+      comic.published_date = published_date.strip
     end
   end
 end

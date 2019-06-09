@@ -1,7 +1,7 @@
 #responsible for making a class to run the cli 
 
 class CommandLineInterface
-  
+  # note edge case inop still
   def start 
     input = ""
     self.intro
@@ -14,8 +14,7 @@ class CommandLineInterface
         self.dive(input.to_i-1)
       elsif input.to_s.downcase == "exit"
         puts "goodbye"
-      else
-        input = ""
+      elsif (input.to_s != "")
         puts "invalid response"
       end
     end
@@ -36,8 +35,20 @@ class CommandLineInterface
   
   def dive(index)
     comic = Comic.all[index]
-    Scraper.scrape_info(comic)
-    binding.pry
+    if comic.published_date == nil
+      Scraper.scrape_info(comic)
+    end
+    puts comic.title
+    puts comic.published_date
+    puts comic.info_url
+    puts comic.description
+    puts "see other comics?(y/n)"
+    input = gets.strip.downcase
+    if input == "y"
+      return
+    else
+      puts "goodbye"
+    end
   end
   
   
