@@ -2,20 +2,17 @@
 
 class CommandLineInterface
   # note edge case inop still
-  def start 
+  def run 
     input = ""
     self.intro
     Scraper.scrape_books
     until input.to_s.downcase == "exit"
       self.list_comics
-      puts "\n choose a number from (1 - #{Comic.all.length}) to see more info about.\n\n\n"
       input = gets.strip
       if input.to_i > 0 && input.to_i < Comic.all.length+1
-        self.dive(input.to_i-1)
+        input = self.dive(input.to_i-1)
       elsif input.to_s.downcase == "exit"
         puts "goodbye"
-      elsif (input.to_s != "")
-        puts "invalid response"
       end
     end
   end
@@ -28,6 +25,7 @@ class CommandLineInterface
   end
   
   def list_comics
+    puts "\n choose a number from (1 - #{Comic.all.length}) to see more info about.\n\n"
     Comic.all.each_with_index do|issue, index|
       puts "\n#{index + 1}. #{issue.title}\n"
     end
@@ -38,16 +36,17 @@ class CommandLineInterface
     if comic.published_date == nil
       Scraper.scrape_info(comic)
     end
-    puts comic.title
-    puts comic.published_date
-    puts comic.info_url
-    puts comic.description
+    puts "\nTitle: - #{comic.title}\n"
+    puts "\nDate published: - #{comic.published_date}\n"
+    puts "\n Url: - #{comic.info_url}\n"
+    puts "\n Description: - #{comic.description}\n\n\n"
     puts "see other comics?(y/n)"
     input = gets.strip.downcase
     if input == "y"
-      return
-    else
+      return "y"
+    elsif input == "n" #|| input == "exit"
       puts "goodbye"
+      return "exit"
     end
   end
   
