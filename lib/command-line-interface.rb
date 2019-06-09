@@ -9,10 +9,12 @@ class CommandLineInterface
     until input.to_s.downcase == "exit"
       self.list_comics
       input = gets.strip
-      if input.to_i > 0 && input.to_i < Comic.all.length+1
+      if (1..Comic.all.length).include? input.to_i 
         input = self.dive(input.to_i-1)
       elsif input.to_s.downcase == "exit"
         puts "goodbye"
+      else
+        puts "I do not understand the command."
       end
     end
   end
@@ -20,7 +22,7 @@ class CommandLineInterface
   
   def intro 
     puts "Welcome to comics cli where you can see the latest in Marvel\n" 
-    puts "Remember you can always type /'exit/' to back out\n"
+    puts "Remember you can always type 'exit' to back out\n"
     puts "\n\n\n Lets check out whats new in Marvel comics this week!\n\n\n"
   end
   

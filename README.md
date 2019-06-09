@@ -1,9 +1,7 @@
 
 # Comic::Cli
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/comic/cli`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to Comic-cli an object oriented Ruby project for Flatiron School. This gem is made to scrape Mavel Comic's website and show the newest releases. The user can then search in one of the releases and see more info about it.
 
 ## Installation
 
@@ -23,7 +21,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use the program simply run bin/run and it will welcome you and show the most recent comic book releases. The user can then select a number displayed next to the the comic title in the command line to see more info about that comic. The user can then select to see the comic list again or exit program. Typeing 'exit' at anytime ends the program.
 
 ## Development
 
