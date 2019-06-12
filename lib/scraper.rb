@@ -5,7 +5,7 @@
 
 class Scraper
   
-  BASE_URL = "https://www.marvel.com/comics?byZone=marvel_site_zone&options[offset]=12&offset=0&options[limit]=12&options[formatType]=issue&options[noVariants]=true&options[dateDescriptor]=thisWeek&options[orderBy][0]=issues.onsale_date+DESC&options[orderBy][1]=issues.id+DESC&contentType=comic_issue&method=fetchByReleaseDate&options%5Boffset%5D=0&totalcount=24"
+  BASE_URL = "https://www.marvel.com/comics?&options%5Boffset%5D=0&totalcount=12"
   
   def self.scrape_books
     html = open(BASE_URL)

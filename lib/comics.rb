@@ -2,8 +2,8 @@
 
 class Comic
   
-  attr_accessor :published_date, :description
-  attr_reader :title, :info_url
+  
+  attr_reader :title, :info_url, :published_date, :description
   
   @@all = []
   
@@ -21,6 +21,18 @@ class Comic
   
   def save
     @@all << self
+  end
+  
+  def published_date=(published_date)
+    if @published_date == nil
+      @published_date = published_date
+    end
+  end
+  
+  def description=(description)
+    if @description == nil
+      @description = description
+    end
   end
   
 end
