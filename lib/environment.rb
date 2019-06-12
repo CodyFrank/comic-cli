@@ -1,8 +1,10 @@
-require 'pry'
+require "bundler/setup"
+Bundler.require(:default)
+#require 'pry'
 require 'open-uri'
-require 'nokogiri'
+#require 'nokogiri'
 
-require_relative "./comic/cli/version"
+require_relative "./comic_cli/version"
 
 module Comics
   module Cli

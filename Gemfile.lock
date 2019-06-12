@@ -11,7 +11,6 @@ GEM
     mini_portile2 (2.4.0)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
-    open_uri_redirections (0.2.1)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -24,7 +23,6 @@ DEPENDENCIES
   bundler (~> 2.0)
   comic-cli!
   nokogiri
-  open_uri_redirections (~> 0.2.1)
   pry
   rake (~> 10.0)
 

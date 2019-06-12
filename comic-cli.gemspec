@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "comic/cli/version"
+require "comic_cli/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "comic-cli"
-  spec.version       = Comic::Cli::VERSION
+  spec.version       = ComicCli::VERSION
   spec.authors       = ["'Cody Frank'"]
   spec.email         = ["'cody.frank30@gmail.com'"]
 
@@ -38,4 +38,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "pry"
 end

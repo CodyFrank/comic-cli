@@ -47,6 +47,7 @@ class CommandLineInterface
     if input == "y"
       return "y"
     elsif input == "n" #|| input == "exit"
+    binding.pry
       puts "goodbye"
       return "exit"
     end
