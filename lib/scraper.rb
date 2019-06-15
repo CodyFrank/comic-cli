@@ -8,8 +8,7 @@ class Scraper
   BASE_URL = "https://www.marvel.com/comics?&options%5Boffset%5D=0&totalcount=12"
   
   def self.scrape_books
-    html = open(BASE_URL)
-    doc = Nokogiri::HTML(html)
+    doc = Nokogiri::HTML(open(BASE_URL))
     parsed_issues = doc.css("h2:contains('New Releases ')~div.JCMultiRow>div.row-item")
     parsed_issues.each do|book|
       title = book.css("h5").text.strip
@@ -21,8 +20,7 @@ class Scraper
   
   def self.scrape_info(comic)
     url = comic.info_url
-    html = open(url)
-    doc = Nokogiri::HTML(html)
+    doc = Nokogiri::HTML(open(url))
     parsed_info = doc.css(".featured-item-meta")
     parsed_info.each do|data|
       description = data.css("+ div>p:first-child").text
