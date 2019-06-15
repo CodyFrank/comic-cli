@@ -3,19 +3,20 @@
 class CommandLineInterface
   # note edge case inop still
   def run 
-    input = ""
+    input = nil
     self.intro
     Scraper.scrape_books
     
     until input.to_s.downcase == "exit"
       self.list_comics
       input = gets.strip.downcase
-      if (1..Comic.all.length).include? input.to_i 
-        input = self.dive(input.to_i-1)
-      elsif input == "exit"
-        puts "goodbye"
-      else
-        puts "I do not understand the command."
+        if (1..Comic.all.length).include?(input.to_i)
+          input = self.dive(input.to_i-1)
+        elsif input == "exit"
+          puts "goodbye"
+        else
+          input = nil
+          puts "I do not understand the command. Please type a comic number or exit."
       end
     end
   end
@@ -39,11 +40,12 @@ class CommandLineInterface
     if comic.published_date == nil
       Scraper.scrape_info(comic)
     end
+    
     puts "\nTitle: - #{comic.title}\n"
     puts "\nDate published: - #{comic.published_date}\n"
     puts "\n Url: - #{comic.info_url}\n"
     puts "\n Description: - #{comic.description}\n\n"
-    puts "see other comics?(y/n)"
+    puts "Would you like to see other comics?(y/n)"
     input = gets.strip.downcase
     if input.downcase == "y"
       return "y"
@@ -52,6 +54,4 @@ class CommandLineInterface
       return "exit"
     end
   end
-  
-  
 end
