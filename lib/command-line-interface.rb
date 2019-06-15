@@ -6,12 +6,13 @@ class CommandLineInterface
     input = ""
     self.intro
     Scraper.scrape_books
+    
     until input.to_s.downcase == "exit"
       self.list_comics
-      input = gets.strip
+      input = gets.strip.downcase
       if (1..Comic.all.length).include? input.to_i 
         input = self.dive(input.to_i-1)
-      elsif input.to_s.downcase == "exit"
+      elsif input == "exit"
         puts "goodbye"
       else
         puts "I do not understand the command."
@@ -21,13 +22,13 @@ class CommandLineInterface
   
   
   def intro 
-    puts "Welcome to comics cli where you can see the latest in Marvel\n" 
+    puts "Welcome to comics cli where you can see the latest in Marvel Comics\n" 
     puts "Remember you can always type 'exit' to back out\n"
-    puts "\n\n\n Lets check out whats new in Marvel comics this week!\n\n\n"
+    puts "\n Lets check out whats new in Marvel comics this week!\n"
   end
   
   def list_comics
-    puts "\n choose a number from (1 - #{Comic.all.length}) to see more info about.\n\n"
+    puts "\n Choose a number from (1 - #{Comic.all.length}) to see more info about.\n"
     Comic.all.each_with_index do|issue, index|
       puts "\n#{index + 1}. #{issue.title}\n"
     end
@@ -41,13 +42,12 @@ class CommandLineInterface
     puts "\nTitle: - #{comic.title}\n"
     puts "\nDate published: - #{comic.published_date}\n"
     puts "\n Url: - #{comic.info_url}\n"
-    puts "\n Description: - #{comic.description}\n\n\n"
+    puts "\n Description: - #{comic.description}\n\n"
     puts "see other comics?(y/n)"
     input = gets.strip.downcase
-    if input == "y"
+    if input.downcase == "y"
       return "y"
-    elsif input == "n" #|| input == "exit"
-    binding.pry
+    elsif input == "n" || input.downcase == "exit"
       puts "goodbye"
       return "exit"
     end
