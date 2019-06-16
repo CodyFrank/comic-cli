@@ -44,8 +44,8 @@ class CommandLineInterface
     
     puts "\nTitle: - #{comic.title}\n"
     puts "\nDate published: - #{comic.published_date}\n"
-    puts "\n Url: - #{comic.info_url}\n"
-    puts "\n Description: - #{comic.description}\n\n"
+    puts "\nUrl: - #{comic.info_url}\n"
+    puts "\nDescription: - #{comic.description}\n\n"
     until input != nil
       puts "Would you like to see other comics?(y/n)"
       input = gets.strip.downcase
