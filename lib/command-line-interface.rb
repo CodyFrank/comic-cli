@@ -7,13 +7,16 @@ class CommandLineInterface
     self.intro
     Scraper.scrape_books
     until input.to_s.downcase == "exit"
-    input = self.list_comics
+    self.list_comics
+    puts "\n Choose a number from (1 - #{Comic.all.length}) to see more info.\n"
+    input = gets.strip.downcase
       if (1..Comic.all.length).include?(input.to_i)
         input = self.dive(input.to_i-1)
       elsif input == "exit"
         puts "goodbye"
       else
-        input = self.invalid_input
+        puts "I do not understand the command"
+        sleep(1)
       end
     end
   end
@@ -26,24 +29,15 @@ class CommandLineInterface
   end
   
   def list_comics
-    puts "would you like to list the Comics?(y/n)"
-    input = gets.strip.downcase
-    if input == "y"
-      Comic.all.each_with_index do|issue, index|
-        puts "\n#{index + 1}. #{issue.title}"
-      end
-      puts "\n Choose a number from (1 - #{Comic.all.length}) to see more info.\n"
-      input = gets.strip.downcase
-    elsif input == "n" || input == "exit"
-      input = "exit"
-    else 
-      input = nil
+    Comic.all.each_with_index do|issue, index|
+      puts "\n#{index + 1}. #{issue.title}"
     end
-    return input
   end
   
   def dive(index)
+    input = nil
     comic = Comic.all[index]
+    
     if comic.published_date == nil
       Scraper.scrape_info(comic)
     end
@@ -52,20 +46,21 @@ class CommandLineInterface
     puts "\nDate published: - #{comic.published_date}\n"
     puts "\n Url: - #{comic.info_url}\n"
     puts "\n Description: - #{comic.description}\n\n"
-    puts "Would you like to see other comics?(y/n)"
-    input = gets.strip.downcase
-    if input == "y"
-      return "y"
-    elsif input == "n" || input.downcase == "exit"
-      puts "goodbye"
-      return "exit"
-    else
-      self.invalid_input
+    until input != nil
+      puts "Would you like to see other comics?(y/n)"
+      input = gets.strip.downcase
+      if input == "y"
+        input = "y"
+      elsif input == "n" || input.downcase == "exit"
+        input = "exit"
+        puts "goodbye"
+      else
+       puts "I do not understand the response."
+       input = nil
+      end
     end
+    return input
   end
   
-  def invalid_input
-    puts "I do not understand the command."
-  end
   
 end
